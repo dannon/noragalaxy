@@ -4,18 +4,22 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 var galaxyPath_noradest;
 var htdocs;
-if (process.env.GALAXY_ROOT != undefined && process.env.GALAXY_ROOT != "")
+
+var dist = "static/dist/"
+
+
+if (process.env.GALAXY_ROOT != undefined && process.env.GALAXY_ROOT != "") // when running from dpx repo
 {
     var galaxyPath = process.env.GALAXY_ROOT+"/"
     galaxyPath_noradest = galaxyPath+"config/plugins/visualizations/nora"
-    var htdocs = "../htdocs"    
+    htdocs = "../htdocs"    
 }
-else
+else // when running in NORAview repo
 {
-    var htdocs = "htdocs"    
+    htdocs = "htdocs"    
+    galaxyPath_noradest=path.join(__dirname)
 }
 
-const dist = "static/dist/"
 
 module.exports = {
     mode: "production",
