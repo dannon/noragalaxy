@@ -427,7 +427,7 @@ function KDataManager()
 		var suffix = "";
 		var suffix = "?v=" + Date.now();
 		
-		xhr.open('GET', 'http://' + params.url +  suffix , true);
+		xhr.open('GET', window.location.href.split('/')[0] + '//' + params.url +  suffix , true);
 		xhr.setRequestHeader('Cache-Control', 'no-cache');
 		xhr.responseType = 'arraybuffer';
 		xhr.onerror = function(e) { alertify.error("url  " +params.url+  " not loaded for unknown reasons"); if (params.callback) params.callback(undefined); };
