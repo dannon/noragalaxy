@@ -383,6 +383,12 @@ body  a:hover
   background:hsl(0,0%,90%);
 }
 
+.localfiletable tr.modified
+{
+  background:#B00;
+  color:white;
+}
+
 
 .localfiletable tr.selected
 {
@@ -793,17 +799,13 @@ opacity:0.1;
 .stickytable  td 
 {
    position: relative; /*why does this have to turned off to make job tooltip working?*/
-   
    border-left:1px solid #aaa;
    border-bottom:1px solid #aaa;
-   
    box-sizing: border-box;
    border-collapse: collapse;
-  
    overflow:hidden;
    min-width:24px;
    text-overflow: ellipsis;
-   
 }
 
 .stickytable tbody td
@@ -2019,6 +2021,30 @@ li.KStudyTagOnSuccess >input
   right:5px;
   top:2px;
 }
+
+li.KStudyTagOnSuccess >textarea
+{
+  width:100px;
+  background:lightgray;
+  position:absolute;
+  height:15px;
+  right:5px;
+  top:3px;
+  resize: none;
+  overflow:hidden;
+
+}
+
+
+li.KStudyTagOnSuccess >textarea:hover
+{
+  position:absolute;
+  width:300px;
+  height:100px;
+  transition-delay:0.5s;
+  
+}
+
 
 .KCmdArgListTable .fullspan
 {

@@ -428,6 +428,7 @@ function KDataManager()
 		var suffix = "?v=" + Date.now();
 		
 		xhr.open('GET', `${window.location.protocol}//${params.url}${suffix}` , true);
+		
 		xhr.setRequestHeader('Cache-Control', 'no-cache');
 		xhr.responseType = 'arraybuffer';
 		xhr.onerror = function(e) { alertify.error("url  " +params.url+  " not loaded for unknown reasons"); if (params.callback) params.callback(undefined); };

@@ -405,6 +405,8 @@ function KCacheManager(master)
        
        // dblclick makes problems for example with delete button. No solution so far
        var $row = $("<tr  ondblclick='loadDataOndblClick(event);' class='filecache' " + dragstuff + "></tr>").appendTo($tbody);
+       if (fobj.modified) 
+           $row.addClass("modified");
        $row.on("contextmenu", function (ev) { fileCacheContextMenu(ev); });
        $row.append($("<td><i class='fa fa-square-o'></i> </td>").dblclick(function(e) {return false;}).click(function(e){ toggle_file(e.target); return false; }));
 

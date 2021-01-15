@@ -1653,7 +1653,8 @@ function KObject3DTool(master)
 						KMarkerPanel_points();
 					setAnnotationAssoc(markerProxy.currentSet.uuid);
 					markerProxy.currentSet.showPanel()
-					makeCurrent();
+					if (!tck.isCurrent)
+					    makeCurrent();
 				  }
 				  else if (str == "deselectbymarker" )
 				  {
@@ -3705,6 +3706,7 @@ function KObject3DTool(master)
                         color: (that.surfacecnter++)%6,
                         alpha:0.8,
                         gamma:1,
+						exposure:0,                        
                         alphaMode:0,
                         wire:false,
                         cuts:[0,0,0],

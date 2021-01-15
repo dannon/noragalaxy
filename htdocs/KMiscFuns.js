@@ -2426,6 +2426,16 @@ function KColorSelector(colorlist, colencode, onchange, obj)
                 });
                 $menu.append($("<li  onchoice='preventSelection'> Gamma: </li>").append($gamma));
             }
+            if (obj.exposure != undefined)
+            {
+                var $exposure = $("<input onchoice='preventSelection' type='number' step='0.05' min='0' max='4'>").val(obj.exposure).
+                on('change', function(ev) {
+                    var $input = $(ev.target);
+                    obj.exposure = parseFloat($input.val());
+                    onchange();
+                });
+                $menu.append($("<li  onchoice='preventSelection'> Exposure: </li>").append($exposure));
+            }
 
             return $menu;
         }
@@ -4398,7 +4408,7 @@ function executeUnpackWorker(abuf, progress, onready)
 
 
 
-function autoExpandOneColumn(selector, columnid)
+function autoExpandOneColumn(selector, columnid,minwidth)
 {
     var $table = $(selector);
     var cols = $table.find("thead tr:first").children(':visible');
@@ -4407,13 +4417,19 @@ function autoExpandOneColumn(selector, columnid)
     for (var k = 0; k < cols.length; k++)
     {
         var col = cols[k];
-        twid += $(col).width();
+        twid += $(col).width()+1;
     }
-    var diff = $table.parent().width() - twid;
+    var targetwid = $table.parent().width()
 
-    c = $(cols[columnid]);
-    newwid = c.width() + diff - 15;
-    if (diff > 0)
+    var diff = targetwid - twid;
+    var c = $(cols[columnid]);
+    var newwid = c.width() + diff - 11
+    if (minwidth != undefined)
+    {
+        if (newwid < minwidth)
+            newwid = minwidth;
+    }
+    if (1) // diff > 0)
     {
         c.attr('data-lastwidth', c.attr('data-lastwidth') || c.width());
         c.width(newwid);

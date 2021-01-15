@@ -511,6 +511,25 @@ function KPrototypeViewer(viewport, master)
 
     signalhandler.attach("close",function() { that.close() });
 
+    that.closeUnreferenced = function()
+    {
+  	   var found = false;
+  	   for (var k in KViewer.viewports)
+  	   {
+  	   	   if (KViewer.viewports[k] != that.viewport)
+  	   	     if (KViewer.viewports[k].getCurrentViewer() != undefined
+  	   	       && KViewer.viewports[k].getCurrentViewer().currentFileID == that.currentFileID)
+  	   	       {
+  	   	       	 found = true;
+  	   	       }
+  	   }
+  	   if (!found)
+  	   {
+  	   	    KViewer.dataManager.delFile(that.currentFileID);
+  	   	    KViewer.cacheManager.update();
+  	   }
+    }
+
 
     return that;
 
@@ -1053,6 +1072,12 @@ function KJsonViewer(viewport,master)
     $div.appendTo(that.$container);
   }
 
+  that.customClose = function()
+  {
+  	that.closeUnreferenced()
+  }
+
+
   return that;
 
 }
@@ -1120,7 +1145,6 @@ function KTXTViewer(viewport,master)
   }
 
   $div.on("blur",textFromObjectToDiv);
-  that.customClose = textFromObjectToDiv;
   $div.on("focus",textFromDivToObject);
 
   that.layoutbar.$container.hide();
@@ -1141,7 +1165,10 @@ function KTXTViewer(viewport,master)
     textFromDivToObject();
     $div.appendTo(that.$container);
     $div.show();
-    that.toolbar.$save.removeClass('notsaved');
+    if (ev.modified == true)
+        that.toolbar.$save.addClass('notsaved');
+    else
+        that.toolbar.$save.removeClass('notsaved');
 
     setInnerLayout();
   }
@@ -1150,6 +1177,17 @@ function KTXTViewer(viewport,master)
   function setInnerLayout()
   {
   	that.setInnerLayout_parent();  
+  }
+
+  that.customClose = function()
+  {
+  	textFromObjectToDiv();
+  	if (!that.toolbar.$save.hasClass("notsaved"))
+  	{
+  	    that.closeUnreferenced()
+  	}
+  	else
+  	    that.content.modified = true;
   }
 
   return that;

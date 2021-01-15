@@ -7992,7 +7992,8 @@ function KMedViewer(viewport, master)
 
             if (nii.dummy)
                 return;
-         //   currentSlice = math.round(currentVoxel._data[slicingDimOfArray]);
+         
+       //     currentSlice = math.round(currentVoxel._data[slicingDimOfArray]);
 
             var this_colmapper = colmapper;
 
@@ -8583,7 +8584,7 @@ function KMedViewer(viewport, master)
                 var totsz = niiOriginal.sizes[0] * niiOriginal.sizes[1] * niiOriginal.sizes[2]; 
 
                 
-                var c = math.floor(currentVoxel._data[slicingDimOfArray]+0.000001);
+                var c = math.round(currentVoxel._data[slicingDimOfArray]+0.000001);
 
                 if (c != currentSlice)
                     sliceChanged = true;
