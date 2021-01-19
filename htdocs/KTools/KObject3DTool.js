@@ -927,9 +927,7 @@ function KObject3DTool(master)
 		if (fileObject.filename.search("\\.gii") > -1)
 		{
 
-		    var scriptname = 'gifti-reader-min.js' + '?' +  static_info.softwareversion;;
-			if (typeof url_pref != "undefined")
-			   scriptname = url_pref + scriptname;
+		    var scriptname = 'gifti-reader-min.js' + '?' +  static_info.softwareversion;
 
 			scriptLoader.loadScript(scriptname, function() {
 
