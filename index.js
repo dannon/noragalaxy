@@ -122,11 +122,18 @@ _.extend(window.bundleEntries || {}, {
 
 			KViewer.applyState()
 
-		//	KViewer.setViewPortLayout();
+			//var intendedName = options.dataset.name.replace(/\.gz/g,"")
+			var intendedName = options.dataset.name;
+			var filetype = options.dataset.extension;
+		
+			//	KViewer.setViewPortLayout();
+
+
+
 			console.log(options.dataset);
   		    var loader = [{url: window.location.host+options.dataset.download_url, 
-				  intendedName: options.dataset.name.replace(/\.gz/g,""),
-				  filetype: options.dataset.extension,
+				  intendedName: intendedName,
+				  filetype: filetype,
 				  intent: {  }  }   ];
 		    KViewer.startImageLoader(loader,function() {});
 

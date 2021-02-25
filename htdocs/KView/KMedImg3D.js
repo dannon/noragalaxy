@@ -991,10 +991,11 @@ if (0)
 				{
 					// var sum = (colors[4*j]+colors[4*j+1]+colors[4*j+2])/3 ;
 					 var max = math.max([colors[4*j],colors[4*j+1],colors[4*j+2]]);
+					 var f1 = 2+obj.exposure;
 					 var f2 = (1-max)/255;
-					 colors[4*j] = colors[4*j] + bgndcol[0]*f2;						 
-					 colors[4*j+1] = colors[4*j+1] + bgndcol[1]*f2;						 
-					 colors[4*j+2] = colors[4*j+2] + bgndcol[2]*f2;						 
+					 colors[4*j] = f1*colors[4*j] + bgndcol[0]*f2;						 
+					 colors[4*j+1] = f1*colors[4*j+1] + bgndcol[1]*f2;						 
+					 colors[4*j+2] = f1*colors[4*j+2] + bgndcol[2]*f2;						 
 					 
 				}
 			

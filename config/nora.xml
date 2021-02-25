@@ -5,14 +5,20 @@
     <data_sources>
         <data_source>
             <model_class>HistoryDatasetAssociation</model_class>
-            <test type="isinstance" test_attr="datatype" result_type="datatype">tabular.Tabular</test>
-            <test type="isinstance" test_attr="datatype" result_type="datatype">tabular.CSV</test>
-            <test test_attr="ext" result_type="datatype">nrrd</test>
-            <test test_attr="ext" result_type="datatype">stl</test>
             <test test_attr="ext" result_type="datatype">analyze75</test>
-            <test test_attr="ext" result_type="datatype">nifti</test>
-            <test test_attr="ext" result_type="datatype">csv</test>
+	    <test test_attr="ext" result_type="datatype">nrrd</test>
+            <test test_attr="ext" result_type="datatype">stl</test>
+            <test test_attr="ext" result_type="datatype">trk</test>
+            <test test_attr="ext" result_type="datatype">tck</test>
+            <test test_attr="ext" result_type="datatype">gii</test>
+            <test test_attr="ext" result_type="datatype">nii1</test>
+            <test test_attr="ext" result_type="datatype">nii1.gz</test>
+            <test test_attr="ext" result_type="datatype">nii2</test>
+            <test test_attr="ext" result_type="datatype">nii2.gz</test>
+            <test test_attr="ext" result_type="datatype">gii</test>
+            <test test_attr="ext" result_type="datatype">gii.gz</test>
             <test test_attr="ext" result_type="datatype">png</test>
+            <test test_attr="ext" result_type="datatype">binary</test>
             <test test_attr="ext" result_type="datatype">jpg</test>
             <to_param param_attr="id">dataset_id</to_param>
         </data_source>

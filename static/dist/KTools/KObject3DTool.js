@@ -927,9 +927,7 @@ function KObject3DTool(master)
 		if (fileObject.filename.search("\\.gii") > -1)
 		{
 
-		    var scriptname = 'gifti-reader-min.js' + '?' +  static_info.softwareversion;;
-			if (typeof url_pref != "undefined")
-			   scriptname = url_pref + scriptname;
+		    var scriptname = 'gifti-reader-min.js' + '?' +  static_info.softwareversion;
 
 			scriptLoader.loadScript(scriptname, function() {
 
@@ -1653,7 +1651,8 @@ function KObject3DTool(master)
 						KMarkerPanel_points();
 					setAnnotationAssoc(markerProxy.currentSet.uuid);
 					markerProxy.currentSet.showPanel()
-					makeCurrent();
+					if (!tck.isCurrent)
+					    makeCurrent();
 				  }
 				  else if (str == "deselectbymarker" )
 				  {
@@ -3705,6 +3704,7 @@ function KObject3DTool(master)
                         color: (that.surfacecnter++)%6,
                         alpha:0.8,
                         gamma:1,
+						exposure:0,                        
                         alphaMode:0,
                         wire:false,
                         cuts:[0,0,0],

@@ -963,15 +963,30 @@ function KView($parentContainer)
     var w = pt.width();
     var frame_width = $(document.body).width();
 
+    $ptable.css('overflow','hidden');
+    $ptable.css('pointer-events','none');
+    $("#KView_toolBarLeft").css('pointer-events','none');
 
     $(".haircrossFocus").hide();
  
 
     $(document.body).on("mouseup mouseleave",   mymouseup);
-    $(document.body).on("mousemove", moveUnlagger(mymousemove)) ;
-
-
+//    $(document.body).on("mousemove", moveUnlagger(mymousemove)) ;
+    $(document.body).on("mousemove", mymousemove) ;
+    
     function mymousemove(ev)
+    {
+		if (mymousemove_sub.fired != undefined)
+		{
+			clearTimeout(mymousemove_sub.fired)
+		}
+		mymousemove_sub.fired = setTimeout(function() {
+			mymousemove_sub(ev);
+			mymousemove_sub.fired = undefined;
+		},0);
+    }
+
+    function mymousemove_sub(ev)
     {
 
 		   var nx =  ev.clientX;
@@ -1002,7 +1017,9 @@ function KView($parentContainer)
 		   setPatientTableLayout();
 		   setViewPortLayout();
 		   signalhandler.send("positionChange");
-		   signalhandler.send("patientTableWidthChanged");
+    	   signalhandler.send("patientTableWidthChanged"); 
+
+
            if (commandDialog && commandDialog.visible)
                commandDialog.fitIntoVP();
 
@@ -1018,6 +1035,12 @@ function KView($parentContainer)
         setPatientTableLayout();
         setViewPortLayout();
         signalhandler.send("positionChange");
+    	   signalhandler.send("patientTableWidthChanged"); 
+
+        $ptable.css('overflow','auto');
+        $ptable.css('pointer-events','all');
+        $("#KView_toolBarLeft").css('pointer-events','all');
+        
         ev.preventDefault();
 
         if (commandDialog && commandDialog.visible)
